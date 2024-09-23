@@ -1,0 +1,16 @@
+Meetstations luchtkwaliteit vaststellen
+Koppelen aan straat in verkeersdata
+Dataset verkeersintensiteit aanvragen
+
+Dataset 7 dagen verkeersintensiteit
+    - Verkennen en evt nulwaardes opvullen
+
+API luchtkwaliteit
+    - Zelfde 7 dagen aan data opvragen
+    - In 1 dataframe krijgen
+
+Exploratory Data Analysis
+Feature engineering
+Plots maken
+Voorspelling?
+

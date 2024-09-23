@@ -1,4 +1,13 @@
 import streamlit as st
+import json
+import requests as r
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graphical_objects as go
+
+
+
 
 st.title("🎈 My new app")
 st.write(

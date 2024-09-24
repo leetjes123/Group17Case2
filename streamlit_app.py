@@ -46,13 +46,13 @@ df_2024_grouped = df_2024.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2024['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
 df_2024['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2024, 
+fig_2024 = px.bar(df_2024, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2024.show()
 
 #df_2024_pivot = df_2024_grouped.pivot(index='start_meetperiode', columns='stadsdeel', 
                            # values=['gem_intensiteit', 'gem_snelheid'])
@@ -68,13 +68,13 @@ df_2023_grouped = df_2023.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2023['start_meetperiode'] = pd.to_datetime(df_2023['start_meetperiode'])
 df_2023['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2023, 
+fig_2023 = px.bar(df_2023, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2023 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2023.show()
 
 #Ma xx-09-2022 - Zo xx-09-2022
 df_2022 = pd.read_csv('intensiteit2022.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
@@ -87,13 +87,13 @@ df_2022_grouped = df_2022.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2022['start_meetperiode'] = pd.to_datetime(df_2022['start_meetperiode'])
 df_2022['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2022, 
+fig_2022 = px.bar(df_2022, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2022 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2022.show()
 
 #Ma xx-09-2021 - Zo xx-09-2021 
 df_2021 = pd.read_csv('intensiteit2021.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
@@ -106,13 +106,13 @@ df_2021_grouped = df_2021.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2021['start_meetperiode'] = pd.to_datetime(df_2021['start_meetperiode'])
 df_2021['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2021, 
+fig_2021 = px.bar(df_2021, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2021 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2021.show()
 #Ma xx-09-2020 - Zo xx-09-2020
 df_2020 = pd.read_csv('intensiteit2020.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
 df_2020['stadsdeel'] = df_2024['id_meetlocatie'].map(meetpuntenNaarStadsdeel)
@@ -124,13 +124,13 @@ df_2020_grouped = df_2020.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2020['start_meetperiode'] = pd.to_datetime(df_2020['start_meetperiode'])
 df_2020['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2020, 
+fig_2020 = px.bar(df_2020, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2020 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2020.show()
 #Ma xx-09-2019 - Zo xx-09-2019
 df_2019 = pd.read_csv('intensiteit2019.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
 df_2019['stadsdeel'] = df_2019['id_meetlocatie'].map(meetpuntenNaarStadsdeel)
@@ -142,13 +142,13 @@ df_2019_grouped = df_2019.groupby(['start_meetperiode', 'stadsdeel']).agg({
 df_2019['start_meetperiode'] = pd.to_datetime(df_2019['start_meetperiode'])
 df_2019['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
-fig = px.bar(df_2019, 
+fig_2019 = px.bar(df_2019, 
              x='4h_bin', 
              y='gem_intensiteit',
              title="Intensiteit verkeerstromen in 2019 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig.show()
+fig_2019.show()
 
 #print(df_2024.head(500))
 #Bewerking voor join
@@ -156,7 +156,9 @@ fig.show()
 st.title("Verkeersintensiteit tijdens COVID")
 st.markdown("_visualisatie_")
 
-
+figures = {"2019":fig_2019, "2020":fig_2020, "2021":fig_2021, "2022":fig_2022, "2023":fig_2023, "2024":fig_2024}
+option = st.selectbox("Selecteer een figuur om te weergeven", list(figures.keys()))
+st.plotly_chart(figures[option])
 
 
 

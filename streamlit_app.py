@@ -6,12 +6,19 @@ import pandas as pd
 import plotly.express as px
 
 #COVID API
+#De covid API van api-ninjas.com geeft de COVID cijfers per dag aan.
+#De API is openbaar en gratis maar er is wel een Key vereist. Deze key heb ik in de code gezet zodat iedereen het kan runnen.
+#Het land van interesse kan worden aangepaste door de parameter ?country=Land aan te passen. Hier hebben we hem op Netherlands gezet.
+#De API response is een lijst van dictionaries, elke met een regio van het land. In dit geval betekent het aparte cijfers voor
+#de caribische gemeenten van het koninkrijk. Deze zijn zodanig klein dat ze verwaarloosbaar zijn.
 apiKey = 'BT2KC0xm+UHgWAr5kw889A==UlFfvOOZFfy9BkEp'
 baseUrl = 'https://api.api-ninjas.com/v1/covid19?country=Netherlands'
-
+#GET request
 response = r.get(baseUrl, headers = { 'X-Api-Key' : apiKey}) 
+#Selecteer met index [-1] de laatste dictionary in de lijst, dit zijn de cijfers voor heel Nederland, zonder caribische gemeenten
 data = json.loads(response.text)[-1]
-df_covid = pd.DataFrame(data)
+#Laadt de data in een panda's dataframe.
+df_covid = pd.DataFrame(data) #DEZE VEREIST NOG AANPASSING
 
 
 

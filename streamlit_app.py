@@ -73,13 +73,13 @@ df_2023_grouped = df_2023.groupby(['start_meetperiode', 'stadsdeel']).agg({
     'gem_snelheid': 'mean'
 }).reset_index()
 
-df_2023['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
+df_2023['start_meetperiode'] = pd.to_datetime(df_2023['start_meetperiode'])
 df_2023['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
 fig = px.bar(df_2023, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2023 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig.show()
@@ -92,13 +92,13 @@ df_2022_grouped = df_2022.groupby(['start_meetperiode', 'stadsdeel']).agg({
     'gem_snelheid': 'mean'
 }).reset_index()
 
-df_2022['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
+df_2022['start_meetperiode'] = pd.to_datetime(df_2022['start_meetperiode'])
 df_2022['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
 fig = px.bar(df_2022, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2022 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig.show()
@@ -111,13 +111,13 @@ df_2021_grouped = df_2021.groupby(['start_meetperiode', 'stadsdeel']).agg({
     'gem_snelheid': 'mean'
 }).reset_index()
 
-df_2021['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
+df_2021['start_meetperiode'] = pd.to_datetime(df_2021['start_meetperiode'])
 df_2021['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
 fig = px.bar(df_2021, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2021 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig.show()
@@ -129,13 +129,13 @@ df_2020_grouped = df_2020.groupby(['start_meetperiode', 'stadsdeel']).agg({
     'gem_snelheid': 'mean'
 }).reset_index()
 
-df_2020['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
+df_2020['start_meetperiode'] = pd.to_datetime(df_2020['start_meetperiode'])
 df_2020['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
 fig = px.bar(df_2020, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2020 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig.show()
@@ -147,13 +147,13 @@ df_2019_grouped = df_2019.groupby(['start_meetperiode', 'stadsdeel']).agg({
     'gem_snelheid': 'mean'
 }).reset_index()
 
-df_2019['start_meetperiode'] = pd.to_datetime(df_2024['start_meetperiode'])
+df_2019['start_meetperiode'] = pd.to_datetime(df_2019['start_meetperiode'])
 df_2019['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
 
 fig = px.bar(df_2019, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2019 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig.show()
@@ -161,7 +161,8 @@ fig.show()
 #print(df_2024.head(500))
 #Bewerking voor join
 
-
+st.title("Verkeersintensiteit tijdens COVID")
+st.markdown("_visualisatie_")
 
 
 

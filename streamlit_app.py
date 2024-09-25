@@ -56,7 +56,6 @@ df = load_and_cache_data()
 @st.cache_data
 def load_data(year):
     df = pd.read_csv(f'intensiteit{year}_weekly.csv')
-    df['week_start'] = pd.to_datetime(df['week_start'])
     return df
 
 # Cache individual DataFrames

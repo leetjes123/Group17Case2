@@ -66,7 +66,7 @@ df_2023_grouped = df_2023.groupby(['start_meetperiode', 'stadsdeel']).agg({
 }).reset_index()
 
 df_2023['start_meetperiode'] = pd.to_datetime(df_2023['start_meetperiode'])
-df_2023['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
+df_2023['4h_bin'] = df_2023['start_meetperiode'].dt.floor('4H')
 
 fig_2023 = px.bar(df_2023, 
              x='4h_bin', 
@@ -85,12 +85,12 @@ df_2022_grouped = df_2022.groupby(['start_meetperiode', 'stadsdeel']).agg({
 }).reset_index()
 
 df_2022['start_meetperiode'] = pd.to_datetime(df_2022['start_meetperiode'])
-df_2022['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
+df_2022['4h_bin'] = df_2022['start_meetperiode'].dt.floor('4H')
 
 fig_2022 = px.bar(df_2022, 
              x='4h_bin', 
              y='gem_intensiteit',
-             title="Intensiteit verkeerstromen in 2022 (per 4 uur)", 
+             title="Intensiteit verkeerstromen in 2023 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
 fig_2022.show()
@@ -104,7 +104,7 @@ df_2021_grouped = df_2021.groupby(['start_meetperiode', 'stadsdeel']).agg({
 }).reset_index()
 
 df_2021['start_meetperiode'] = pd.to_datetime(df_2021['start_meetperiode'])
-df_2021['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
+df_2021['4h_bin'] = df_2021['start_meetperiode'].dt.floor('4H')
 
 fig_2021 = px.bar(df_2021, 
              x='4h_bin', 
@@ -122,7 +122,7 @@ df_2020_grouped = df_2020.groupby(['start_meetperiode', 'stadsdeel']).agg({
 }).reset_index()
 
 df_2020['start_meetperiode'] = pd.to_datetime(df_2020['start_meetperiode'])
-df_2020['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
+df_2020['4h_bin'] = df_2020['start_meetperiode'].dt.floor('4H')
 
 fig_2020 = px.bar(df_2020, 
              x='4h_bin', 
@@ -130,7 +130,7 @@ fig_2020 = px.bar(df_2020,
              title="Intensiteit verkeerstromen in 2020 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2020.show()
+fig_2020.show
 #Ma xx-09-2019 - Zo xx-09-2019
 df_2019 = pd.read_csv('intensiteit2019.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
 df_2019['stadsdeel'] = df_2019['id_meetlocatie'].map(meetpuntenNaarStadsdeel)
@@ -140,7 +140,7 @@ df_2019_grouped = df_2019.groupby(['start_meetperiode', 'stadsdeel']).agg({
 }).reset_index()
 
 df_2019['start_meetperiode'] = pd.to_datetime(df_2019['start_meetperiode'])
-df_2019['4h_bin'] = df_2024['start_meetperiode'].dt.floor('4H')
+df_2019['4h_bin'] = df_2019['start_meetperiode'].dt.floor('4H')
 
 fig_2019 = px.bar(df_2019, 
              x='4h_bin', 

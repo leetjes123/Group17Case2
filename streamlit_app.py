@@ -54,24 +54,37 @@ fig_hist.update_layout(
     }
 )
 
+if st.checkbox('Toon regressielijn'):
+    fig_hist.add_trace(px.line(df_weekly_new, x='Date', y='New Cases', color_discrete_sequence=['blue']).data[0])
+
+if st.checkbox('Toon alleen data na vaccinatie'):
+    df_filtered = df_weekly_new[df_weekly_new['Date'] >= '2021-01-06']
+    fig_hist = px.bar(df_filtered, x='Date', y='New Cases',
+        title='COVID-19 gevallen na vaccinatie',
+        labels={'New Cases': 'Nieuwe Gevallen', 'Date': 'Datum'},
+        template='plotly_dark', color_discrete_sequence=['#F23E2E'])
+
+
 # Update de x-as om deze in maanden te tonen met geroteerde labels
 fig_hist.update_xaxes(dtick="M1", tickformat="%b %Y", tickangle=-45)
+
 
 fig_hist.update_layout(
     autosize=False,  # Schakel autosize uit om zelf de afmetingen te specificeren
     width=1000,  # Breder formaat
     height=500,  # Hoger formaat
     yaxis_range=[0, max(df_weekly_new['New Cases']) * 1.1],  # Y-as iets hoger om ruimte te creëren
-    margin=dict(l=38, r=40, t=50, b=80)  # Pas de marges aan voor een betere weergave
+    margin=dict(l=40, r=40, t=50, b=80)  # Pas de marges aan voor een betere weergave
 )
 
 # Voeg annotaties toe voor moment lockdown
-fig_hist.add_vline(x='2020-03-15', line_width=2, line_dash="dash", line_color="yellow")
+fig_hist.add_vline(x='2020-03-15', line_width=2, line_dash="dash", line_color="green")
 fig_hist.add_annotation(x='2020-03-15', y=700000, text="Start lockdown", showarrow=True, arrowhead=1)
 
 # Meer annotaties toe voor moment vaccinaties
-fig_hist.add_vline(x='2021-01-06', line_width=2, line_dash="dash", line_color="yellow")
+fig_hist.add_vline(x='2021-01-06', line_width=2, line_dash="dash", line_color="green")
 fig_hist.add_annotation(x='2021-01-06', y=700000, text="Vaccinatie gestart", showarrow=True, arrowhead=1)
+
 
 st.plotly_chart(fig_hist)
 
@@ -105,7 +118,7 @@ fig_2024 = px.bar(df_2024,
              title="Intensiteit verkeerstromen in 2024 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2024.show()
+
 
 #df_2024_pivot = df_2024_grouped.pivot(index='start_meetperiode', columns='stadsdeel', 
                            # values=['gem_intensiteit', 'gem_snelheid'])
@@ -127,7 +140,7 @@ fig_2023 = px.bar(df_2023,
              title="Intensiteit verkeerstromen in 2023 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2023.show()
+
 
 #Ma xx-09-2022 - Zo xx-09-2022
 df_2022 = pd.read_csv('intensiteit2022.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
@@ -146,7 +159,7 @@ fig_2022 = px.bar(df_2022,
              title="Intensiteit verkeerstromen in 2022 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2022.show()
+
 
 #Ma xx-09-2021 - Zo xx-09-2021 
 df_2021 = pd.read_csv('intensiteit2021.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
@@ -165,7 +178,7 @@ fig_2021 = px.bar(df_2021,
              title="Intensiteit verkeerstromen in 2021 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2021.show()
+
 #Ma xx-09-2020 - Zo xx-09-2020
 df_2020 = pd.read_csv('intensiteit2020.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
 df_2020['stadsdeel'] = df_2024['id_meetlocatie'].map(meetpuntenNaarStadsdeel)
@@ -183,7 +196,7 @@ fig_2020 = px.bar(df_2020,
              title="Intensiteit verkeerstromen in 2020 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2020.show()
+
 #Ma xx-09-2019 - Zo xx-09-2019
 df_2019 = pd.read_csv('intensiteit2019.csv', usecols=['start_meetperiode','gem_intensiteit', 'id_meetlocatie','gem_snelheid'])
 df_2019['stadsdeel'] = df_2019['id_meetlocatie'].map(meetpuntenNaarStadsdeel)
@@ -201,7 +214,7 @@ fig_2019 = px.bar(df_2019,
              title="Intensiteit verkeerstromen in 2019 (per 4 uur)", 
              labels={'4h_bin': 'Tijdstip (per 4 uur)', 'gem_intensiteit': 'Aantal'}, 
              color_discrete_sequence=['coral'])
-fig_2019.show()
+
 
 #print(df_2024.head(500))
 #Bewerking voor join

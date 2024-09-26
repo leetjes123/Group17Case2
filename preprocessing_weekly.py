@@ -12,8 +12,9 @@ df = pd.concat([df_2019,df_2020,df_2021,df_2022,df_2023,df_2024], ignore_index=T
 df['start_meetperiode'] = pd.to_datetime(df['start_meetperiode'])
 df['jaar'] = df['start_meetperiode'].dt.year
 df['dag'] = df['start_meetperiode'].dt.day_name()
+df['week'] = df['start_meetperiode'].dt.isocalendar().week
 df['tijd'] = df['start_meetperiode'].dt.strftime('%H:%M')
 
-df = df.groupby(['dag', 'tijd','jaar'])['gem_intensiteit'].mean().reset_index()
+df_grouped = df.groupby(['dag', 'week','jaar'])['gem_intensiteit'].mean().reset_index()
 
-df.to_csv('intensiteit_daily_average.csv', index=False)
+df_grouped.to_csv('intensiteit_daily_average.csv', index=False)
